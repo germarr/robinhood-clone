@@ -2,12 +2,38 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import "./Stats.css"
 import Rowofstats from "./Rowofstats"
+import { db } from "./firebase"
 
 const TOKEN = "c0qikiv48v6tskkp0dug";
 const baseURL = 'https://finnhub.io/api/v1/quote'
 
 function Stats() {
     const [stockData, setsStockData] = useState([])
+    const [myStocks, setmyStocks] = useState([])
+
+    const getMyStocks = () =>{
+        db
+        .collection("mystocks")
+        .onSnapshot(snapshot =>{
+           let promises = [];
+           let tempData = [];
+           snapshot.docs.map((doc) => {
+               console.log(doc.data());
+               promises.push(getStocksData(doc.data().ticker)
+               .then(res =>{
+                   tempData.push({
+                       id: doc.id,
+                       data:doc.data(),
+                       info:res.data
+                   })
+               })
+           )})
+           Promise.all(promises).then(()=>{
+                console.log(tempData);
+                setmyStocks(tempData);
+           })
+        })
+    }
 
     const getStocksData = (stock) =>{
         return axios
@@ -21,6 +47,7 @@ function Stats() {
         let tempStocksData = []
         const stockList =["AAPL","MSFT","TSLA","FB","BABA","UBER","DIS","SBUX"]
         let promises = [];
+        getMyStocks();
         stockList.map((stock)=>{
             promises.push(
                 getStocksData(stock)
@@ -35,7 +62,6 @@ function Stats() {
 
         Promise.all(promises).then(()=>{
             setsStockData(tempStocksData);
-            console.log(tempStocksData);
         })
 
     },[])
@@ -47,10 +73,19 @@ function Stats() {
                     <p>Stocks</p>
                 </div>
                 <div className="stats__content">
-                    <div className="stats__rows">  
+                    <div className="stats__rows">
+                        {myStocks.map((x) => 
+                        <Rowofstats
+                            key={x.data.ticker}
+                            name={x.data.ticker}
+                            openPrice={x.info.o}
+                            shares = {x.data.shares}
+                            price={x.info.c}
+                        />)}
+                     
                     </div>
                 </div>
-                <div className="stats__header">
+                <div className="stats__header stats__lists">
                     <p>Lists</p>
                 </div>
                 <div className="stats__content">

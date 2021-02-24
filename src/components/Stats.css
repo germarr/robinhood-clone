@@ -21,5 +21,9 @@
   justify-content: space-between;
   border-bottom: 1px solid #42494d;
   padding: 20px 20px 10px 20px;
-  font-weight: 500;
+  font-we ight: 500;
+}
+
+.stats__lsits {
+  border-top: 1px solid #42494d;
 }
