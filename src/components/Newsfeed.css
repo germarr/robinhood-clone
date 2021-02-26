@@ -13,7 +13,7 @@
 }
 
 .newsfeed__portfolio > h1 {
-  margin-top: 0;
+  margin: 0;
 }
 
 .newsfeed__portfolio > p {
@@ -23,3 +23,76 @@
 .newsfeed__chart {
   width: 100%;
 }
+
+.newsfeed__buying__section {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #3b4754;
+  padding: 20px 0px 20px 0px;
+  margin-bottom: 60px;
+}
+
+.newsfeed__market__section {
+}
+
+.newsfeed__market__box {
+  height: 10vh;
+  padding: 20px;
+  border: 1px solid #31363a;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.newsfeed__market__box > p {
+  color: #7b858a;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.newsfeed__popularlist__section {
+  margin-top: 60px;
+}
+
+.newsfeed__popularlists__intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px 20px 0px;
+}
+
+.newsfeed__popularlists__badges {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MuiChip-root.chip.MuiChip-outlined {
+  color: white;
+}
+
+/* 
+.chip {
+  display: flex;
+  height: 30px;
+  border: 1px solid #31363a;
+  align-items: center;
+  border-radius: 18px;
+  padding: 3px 0;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+.chip__avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 10px;
+  border: 1px solid #31363a;
+  background-color: #31363a;
+  margin-right: 8px;
+}
+
+.chip__label {
+  padding-right: 10px;
+} */

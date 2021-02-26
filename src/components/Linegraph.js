@@ -58,7 +58,8 @@ function Linegraph() {
                         time:{
                             format:"MM/DD/YY",
                             tooltipFormat:"ll"
-                        }
+                        },
+                        ticks:{display:false}
                        }],
                        yAxes:[{
                            ticks:{

@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Newsfeed.css"
 import Linegraph from "./Linegraph"
+import Timeline from "./Timeline"
+import Chip from "@material-ui/core/Chip"
+import { Avatar } from "@material-ui/core"
 
 function Newsfeed() {
+    const [popularTopics, setTopics]= useState([
+        "Technologies", 
+        "Top Movies",
+        "Upcoming Earnings",
+        "Crypto",
+        "Cannabis",
+        "Healthcare Supplies",
+        "Index ETFs",
+        "Technology",
+        "China",
+        "Pharma"
+    ])
+
+
     return (
         <div className="newsfeed">
             <div className="newsfeed__container">
@@ -12,7 +29,38 @@ function Newsfeed() {
                         <p>$44.63 (+0.04%) Today</p>
                     </div>
                     <div className="newsfeed__chart">
-                        <Linegraph/>
+                        <Linegraph/> 
+                        <Timeline/>
+                    </div>
+                </div>
+                <div className="newsfeed__buying__section">
+                    <h2>Buying Power</h2>
+                    <h2>$4.11</h2>
+                </div>
+                <div className="newsfeed__market__section">
+                    <div className="newsfeed__market__box">
+                        <p>Markets Closed</p>
+                        <h1>Happy Thanksgiving</h1>
+                    </div>
+                </div>
+                <div className="newsfeed__popularlist__section">
+                    <div className="newsfeed__popularlists__intro">
+                        <h1>Popular lists</h1>
+                        <p>Show More</p>
+                    </div>
+                    <div className="newsfeed__popularlists__badges">
+                        {popularTopics.map((topic)=>(
+                        <Chip
+                            className="chip"
+                            variant="outlined"
+                            label={topic}
+                            avatar={
+                                <Avatar
+                                    className="chip__avatar" 
+                                    src={`https://avatars.dicebear.com/api/human/${topic}.svg`}
+                                />
+                            }
+                        />))}
                     </div>
                 </div>
             </div>
